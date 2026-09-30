@@ -1,0 +1,16 @@
+name: Daily script
+
+on:
+  schedule:
+    - cron: "30 3 * * *"   # every day at 03:30 UTC (9:00 in India)
+  workflow_dispatch:        # adds a "Run workflow" button
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: python daily.py
